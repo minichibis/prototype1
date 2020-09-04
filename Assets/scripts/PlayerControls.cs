@@ -1,6 +1,6 @@
 ﻿/** Sam Carpenter
 * Assignment 1
-* make the player move about
+* makes the player move about.
 */
 
 using System.Collections;
@@ -30,7 +30,7 @@ public class PlayerControls : MonoBehaviour
 		hInput = Input.GetAxis("Horizontal");
 		vInput = Input.GetAxis("Vertical");
 		if(prevspeed){
-			speed = Mathf.Lerp(speed, maxspeed, 0.05f);
+			speed = Mathf.Lerp(speed, maxspeed * Mathf.Sign(vInput), 0.025f);
 		}else{
 			speed = Mathf.Lerp(speed, 0, 0.05f);
 		}
@@ -44,7 +44,7 @@ public class PlayerControls : MonoBehaviour
 		transform.Rotate(Vector3.up * turnspeed * Time.deltaTime);
 		
 		prevspeed = false;
-		if(vInput > 0){
+		if(vInput != 0){
 			prevspeed = true;
 		}
 		prevturn = false;
